@@ -25,8 +25,7 @@ export const aboutMe: AboutMe = {
   description:
     "I'm an interaction design student currently studying at Linnaeus University remotely. I have a strong foundation in digital graphics, both 3D and 2D, that I now want to channel into the world of interaction design by creaing engaging and intuitive interfaces.",
   email: "olledavegardh@gmail.com",
-  imageUrl:
-    "./2.png",
+  imageUrl: "https://cdn.myportfolio.com/a5a3cb99-ac0a-4f31-b527-fa8af119318f/88343baf-dffb-4fb1-ab5e-4ac29bb6135b_rw_1920.jpg?h=ff9363baaf778273cbeb4358299ef9ba",
   googleScholarUrl: "",
   githubUsername: "",
   linkedinUsername: "olleld",
