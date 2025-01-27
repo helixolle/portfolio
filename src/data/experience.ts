@@ -10,21 +10,12 @@ export interface Experience {
 
 export const experienceData: Experience[] = [
   {
-    date: "Summer 2023",
-    title: "Research Intern",
-    company: "DeepMind",
+    date: "Spring 2025",
+    title: "Interaction Design",
+    company: "Sourceful.Energy",
     description:
-      "Developed novel algorithms for causal structure learning in reinforcement learning settings",
-    advisor: "Peter Wang",
-    companyUrl: "https://deepmind.com",
-  },
-  {
-    date: "Summer 2022",
-    title: "Research Intern",
-    company: "Google Research",
-    description:
-      "Worked on improving robustness of large language models to distribution shifts",
-    manager: "Elise Brown",
-    companyUrl: "https://google.com",
+      "As part of our education we collaborated with sourceful.energy and helped them design prototypes for their consumer apps.",
+    advisor: "Paul Cooper",
+    companyUrl: "https://sourceful.energy/",
   },
 ];

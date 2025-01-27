@@ -13,7 +13,7 @@ export interface Publication {
 
 export const publicationData: Publication[] = [
   // If you don't want to show publications, just make the array empty.
-  {
+  /*{
     year: "2024",
     conference: "NeurIPS",
     title: "Scalable Causal Discovery in High-Dimensional Time Series",
@@ -35,5 +35,5 @@ export const publicationData: Publication[] = [
     authors: "Jane Smith, Xue Chen, Sarah Johnson",
     paperUrl: "https://arxiv.org/abs/2302.13095",
     codeUrl: "https://github.com/jsmith/robust-causal-discovery",
-  },
+  },*/
 ];
