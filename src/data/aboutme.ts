@@ -15,6 +15,7 @@ export interface AboutMe {
   secretDescription?: string; // Gets placed in the bottom
   altName?: string;
   institutionUrl?: string;
+  phoneNumber?: string;
 }
 
 export const aboutMe: AboutMe = {
@@ -33,7 +34,7 @@ export const aboutMe: AboutMe = {
   blogUrl: "https://",
   cvUrl: "https://",
   institutionUrl: "https://www.lnu.se",
+  phoneNumber: "+46707875298",
   // altName: "",
   // secretDescription: "I like dogs.",
-  funDescription: "HEJEHAKSFNJOADGBODBSFGUJODSBGUSJDNHGOUDHNGDHNGSDSIHNGSDIHNGS",
 };

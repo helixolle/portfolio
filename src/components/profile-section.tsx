@@ -153,6 +153,19 @@ export function ProfileSection({ aboutMe }: ProfileSectionProps) {
               </a>
             </>
           )}
+          {aboutMe.phoneNumber && (
+            <>
+              <br />
+              <a
+                href={`tel:${aboutMe.phoneNumber}`}
+                className="inline-flex items-center gap-2 text-sm text-zinc-600 hover:text-zinc-900 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                  {aboutMe.phoneNumber}
+              </a>
+            </>
+          )}
         </div>
       </div>
     </div>
