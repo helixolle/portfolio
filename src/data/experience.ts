@@ -12,10 +12,10 @@ export const experienceData: Experience[] = [
   {
     date: "Spring 2025",
     title: "Interaction Design",
-    company: "Sourceful.Energy",
+    company: "Uptilt/Timpunkt",
     description:
-      "As part of our education we collaborated with sourceful.energy and helped them design prototypes for their consumer apps.",
-    advisor: "Paul Cooper",
-    companyUrl: "https://sourceful.energy/",
+      "As part of our education we collaborated with Uptilt/Timpunkt and helped them design prototypes for their consumer apps.",
+    //advisor: "**",
+    companyUrl: "https://uptilt.se/",
   },
 ];
