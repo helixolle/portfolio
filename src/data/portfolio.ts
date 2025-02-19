@@ -17,7 +17,7 @@ export const portfolioData: Portfolio[] = [
       "A browser extension designed to empower news consumers with a deeper understanding of news narratives.",
     technologies: ["Figma"],
     projectUrl: "https://project-demo.com",
-    imageUrl: <img src="/img/originstory_omslag.png" alt="Example" />,
+    imageUrl: <img src="/src/img/originstory_omslag.png" alt="Example" />,
     codeUrl: "https://github.com/username/project",
   },
 ];
