@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export interface Portfolio {
   title: string;
   description: string;
@@ -10,13 +12,12 @@ export interface Portfolio {
 export const portfolioData: Portfolio[] = [
   // Example entry
   {
-    title: "Causal Discovery Framework",
+    title: "OriginStory",
     description:
-      "A framework for discovering causal relationships in high-dimensional time series data using state-of-the-art machine learning techniques.",
-    technologies: ["Python", "PyTorch", "React"],
+      "A browser extension designed to empower news consumers with a deeper understanding of news narratives.",
+    technologies: ["Figma"],
     projectUrl: "https://project-demo.com",
-    imageUrl:
-      "https://images.unsplash.com/photo-1561622539-dffbfc2008fd?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    imageUrl: <img src="/img/originstory_omslag.png" alt="Example" />,
     codeUrl: "https://github.com/username/project",
   },
 ];
