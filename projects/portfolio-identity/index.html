@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio Identity — Olle Lomberg Davegård</title>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=chillax@700,600&f[]=clash-display@400,500,600&display=swap"/>
+  <link rel="stylesheet" href="../../shared/project.css"/>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <div class="header-left-col">
+        <a href="../../index.html" class="wordmark">old</a>
+        <nav>
+          <a href="../../index.html#projects" class="nav-link">Projects</a>
+          <a href="../../index.html#about" class="nav-link">About</a>
+          <a href="#" class="nav-link" id="contactLink">Contact</a>
+        </nav>
+        <a href="../../index.html" class="back-link">
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M13 5H1M1 5L5 1M1 5L5 9"/>
+          </svg>
+          All projects
+        </a>
+      </div>
+      <div class="header-right">
+        <div class="contact-block" id="cBlock">
+          <a href="mailto:olledavegardh@gmail.com">olledavegardh@gmail.com</a>
+          <a href="tel:+46707875208">+46707875208</a>
+          <a href="https://linkedin.com/in/olleld" target="_blank">linkedin.com/in/olleld</a>
+        </div>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="../../index.html#projects" class="mobile-nav-link">Projects</a>
+  <a href="../../index.html#about" class="mobile-nav-link">About</a>
+  <a href="#" class="mobile-nav-link" id="mobileContactLink">Contact</a>
+</div>
+
+<main>
+  <div class="main-inner">
+    <div class="main-left"></div>
+    <div class="main-right">
+      <div class="project-num">05 / 05</div>
+      <div class="project-title">Portfolio Identity</div>
+      <div class="project-tagline">A scroll-driven animation where three initials travel down the page and become a name</div>
+    </div>
+
+    <div class="full-width">
+
+      <div class="info-bar">
+        <div class="info-item">
+          <div class="info-label">Role</div>
+          <div class="info-value">Creative Development</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Year</div>
+          <div class="info-value">2026</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Built with</div>
+          <div class="info-value">Vanilla JavaScript</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Type</div>
+          <div class="info-value">Personal Project</div>
+        </div>
+      </div>
+
+      <div class="hero-img" style="background: linear-gradient(150deg, #dbd7cf, #c8c4bb);">
+        <span class="hero-img-ph">Identity Animation</span>
+      </div>
+
+      <div class="content-section">
+        <div class="section-label">Concept</div>
+        <div class="section-body">
+          <h3>Three letters that already spelled something</h3>
+          <p>My initials — o, l, d — spell "old". That felt like too good a detail to waste on a static logo. The idea was to make those three letters physically travel down the page as you scroll, landing and expanding into the full name: olle / lomberg / davegård.</p>
+          <p>The wordmark and the about section become one continuous thing. The animation isn't decorative — it's the connection between identity and introduction.</p>
+          <div class="tag-row">
+            <span class="tag">Motion</span>
+            <span class="tag">Scroll Animation</span>
+            <span class="tag">Identity</span>
+            <span class="tag">Creative Development</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-label">Process</div>
+        <div class="section-body">
+          <h3>Knowing what you want before knowing how to build it</h3>
+          <p>I used Claude and Perplexity as collaborators — describing what I wanted in plain language and working through the technical approach iteratively. The creative decisions were mine; the AI helped me get there faster.</p>
+          <p>The animation tracks the exact screen position of the letters in the wordmark and their target positions in the heading below, then moves clone elements between those two points as you scroll. Each letter staggers slightly behind the previous one. At 65% through the scroll each letter switches text mid-flight — "o" becomes "olle" while it's still moving.</p>
+          <p>On landing there's a small spring bounce, then the wordmark at the top fades out — because it has become the heading below.</p>
+          <div class="img-block">
+            <span class="img-block-ph">Animation Diagram</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-label">What I learned</div>
+        <div class="section-body">
+          <h3>AI as a tool for closing the design-to-build gap</h3>
+          <p>Using AI as a development partner changed how I think about building interactions. The what and the why were still fully my decisions — the concept, the timing, the feel. The AI just made the how less of a blocker, which left more room to focus on craft.</p>
+          <p>That feels like a genuinely useful way to work: lead with the design intention, use the tool to move faster through the technical parts, and stay in control of every decision that actually matters.</p>
+          <div class="tag-row">
+            <span class="tag">Vanilla JavaScript</span>
+            <span class="tag">Scroll-scrubbed interpolation</span>
+            <span class="tag">Custom spring easing</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="../../index.html" class="next-project">
+        <div>
+          <div class="next-label">Back to</div>
+          <div class="next-title">All Projects</div>
+        </div>
+        <div class="next-arrow">→</div>
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<section class="mobile-contact">
+  <div class="mobile-contact-label">Contact</div>
+  <div class="mobile-contact-links">
+    <a href="mailto:olledavegardh@gmail.com">olledavegardh@gmail.com <span>↗</span></a>
+    <a href="tel:+46707875208">+46707875208 <span>↗</span></a>
+    <a href="https://linkedin.com/in/olleld" target="_blank">linkedin.com/in/olleld <span>↗</span></a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Olle Lomberg Davegård</span>
+  <div class="footer-wm">old</div>
+  <span style="text-align:right;">Interaction Designer</span>
+</footer>
+
+<script src="../../shared/project.js"></script>
+</body>
+</html>

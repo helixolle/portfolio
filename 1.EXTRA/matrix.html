@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OriginStory — User Matrix</title>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=chillax@700,600&f[]=clash-display@400,500,600&display=swap"/>
+  <style>
+    :root {
+      --bg: #FFF;
+      --text: #0F0F0E;
+      --muted: #888880;
+      --border: rgba(15,15,14,0.1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Clash Display', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 64px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .matrix-label {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: 120px 1fr 1fr 1fr;
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .cell {
+      padding: 20px 9px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Header row */
+    .cell--header {
+      background: var(--bg);
+    }
+
+    .cell--header-user {
+      font-family: 'Chillax', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.03em;
+    }
+
+    /* Row labels */
+    .cell--row-label {
+      font-size: 8.5px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      padding-top: 22px;
+      padding-right: 110px;
+    }
+
+    /* Content cells */
+    .cell--content ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cell--content ul li {
+      font-size: 12px;
+      font-weight: 400;
+      color: #3a3a37;
+      line-height: 1.5;
+      padding-left: 12px;
+      position: relative;
+    }
+
+    .cell--content ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    /* Top-left corner empty cell */
+    .cell--corner {
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+            padding-right: 5px;
+
+    }
+
+    /* Persona blurb */
+    .persona {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 6px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="matrix-label">User Research — OriginStory</div>
+
+  <div class="matrix">
+
+    <!-- Header row -->
+    <div class="cell cell--corner"></div>
+
+    <div class="cell cell--header">
+      <div class="cell--header-user">News Consumer</div>
+      <div class="persona">"Matthew" — reads the news daily, wants to understand where stories come from</div>
+    </div>
+    <div class="cell cell--header">
+      <div class="cell--header-user">Journalist</div>
+      <div class="persona">"Anna" — professional, needs to verify sources and track how her content spreads</div>
+    </div>
+    <div class="cell cell--header">
+      <div class="cell--header-user">Fact Checker</div>
+      <div class="persona">"Juan" — detail-oriented, focused on credibility and tracking misinformation</div>
+    </div>
+
+    <!-- Characteristics row -->
+    <div class="cell cell--row-label">Characteristics</div>
+    <div class="cell cell--content">
+      <ul>
+        <li>Varied tech literacy</li>
+        <li>Reads news casually or regularly</li>
+        <li>Values accuracy and clarity</li>
+      </ul>
+    </div>
+    <div class="cell cell--content">
+      <ul>
+        <li>High tech literacy</li>
+        <li>Familiar with digital news tools</li>
+        <li>Monitors how content is perceived</li>
+      </ul>
+    </div>
+    <div class="cell cell--content">
+      <ul>
+        <li>Detail oriented</li>
+        <li>Analytical mindset</li>
+        <li>Works with disputed information</li>
+      </ul>
+    </div>
+
+    <!-- Motivation row -->
+    <div class="cell cell--row-label">Motivation</div>
+    <div class="cell cell--content">
+      <ul>
+        <li>Understand news origins</li>
+        <li>Better grasp of narratives</li>
+        <li>Stay accurately informed</li>
+      </ul>
+    </div>
+    <div class="cell cell--content">
+      <ul>
+        <li>Understand content impact</li>
+        <li>Verify external sources</li>
+        <li>Improve future content</li>
+      </ul>
+    </div>
+    <div class="cell cell--content">
+      <ul>
+        <li>Confirm accuracy of news</li>
+        <li>Contribute reliable information</li>
+        <li>Follow misinformation spread</li>
+      </ul>
+    </div>
+
+    <!-- Key functions row -->
+    <div class="cell cell--row-label">Key Functions</div>
+    <div class="cell cell--content">
+      <ul>
+        <li>Search and track stories</li>
+        <li>Filter by source or topic</li>
+        <li>Visualise story spread</li>
+        <li>Browse origin connections</li>
+      </ul>
+    </div>
+    <div class="cell cell--content">
+      <ul>
+        <li>Visualise spread and origin</li>
+        <li>View source analytics</li>
+        <li>Identify and verify external sources</li>
+      </ul>
+    </div>
+    <div class="cell cell--content">
+      <ul>
+        <li>Verify source credibility</li>
+        <li>Track misinformation spread</li>
+        <li>Flag inaccurate articles</li>
+      </ul>
+    </div>
+
+  </div>
+
+</body>
+</html>
