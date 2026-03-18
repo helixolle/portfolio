@@ -15,7 +15,7 @@ function scrollToSection(id) {
 document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
   const hash = link.getAttribute('href');
   if (hash === '#projects') link.addEventListener('click', e => { e.preventDefault(); scrollToSection('projects'); });
-  if (hash === '#about')    link.addEventListener('click', e => { e.preventDefault(); scrollToSection('about'); });
+  if (hash === '#about') link.addEventListener('click', e => { e.preventDefault(); scrollToSection('about'); });
 });
 
 // ── NAV ACTIVE ───
@@ -45,8 +45,8 @@ document.getElementById('contactLink')?.addEventListener('click', e => {
 });
 
 // ── MOBILE NAV ───
-const hamburger  = document.getElementById('hamburger');
-const mobileNav  = document.getElementById('mobileNav');
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
 
 hamburger.addEventListener('click', () => {
   const isOpen = mobileNav.classList.toggle('open');
@@ -78,13 +78,13 @@ document.getElementById('mobileContactLink')?.addEventListener('click', e => {
 
 // ── WORDMARK COLLAPSE ───
 const wordmark = document.getElementById('wordmark');
-const spaces   = wordmark.querySelectorAll('.wm-space');
-const sufO     = document.getElementById('suf-o');
-const sufL     = document.getElementById('suf-l');
-const sufD     = document.getElementById('suf-d');
-const charsO   = sufO.querySelectorAll('.wm-c');
-const charsL   = sufL.querySelectorAll('.wm-c');
-const charsD   = sufD.querySelectorAll('.wm-c');
+const spaces = wordmark.querySelectorAll('.wm-space');
+const sufO = document.getElementById('suf-o');
+const sufL = document.getElementById('suf-l');
+const sufD = document.getElementById('suf-d');
+const charsO = sufO.querySelectorAll('.wm-c');
+const charsL = sufL.querySelectorAll('.wm-c');
+const charsD = sufD.querySelectorAll('.wm-c');
 
 let widths = {};
 
@@ -94,26 +94,26 @@ function cacheWidths() {
   sufD.style.width = 'auto';
   spaces[0].style.width = '0.28em';
   spaces[1].style.width = '0.28em';
-  widths.sufD  = sufD.scrollWidth;
-  widths.sufL  = sufL.scrollWidth;
-  widths.sufO  = sufO.scrollWidth;
+  widths.sufD = sufD.scrollWidth;
+  widths.sufL = sufL.scrollWidth;
+  widths.sufO = sufO.scrollWidth;
   widths.space = spaces[0].offsetWidth;
 }
 
 function collapseLetters(suffix, chars, p) {
-  const total    = chars.length;
+  const total = chars.length;
   const naturalW = suffix === sufD ? widths.sufD
-                 : suffix === sufL ? widths.sufL
-                 : widths.sufO;
+    : suffix === sufL ? widths.sufL
+      : widths.sufO;
 
   suffix.style.overflow = 'visible';
-  suffix.style.width    = naturalW * (1 - p) + 'px';
+  suffix.style.width = naturalW * (1 - p) + 'px';
 
   chars.forEach((c, i) => {
-    const idx       = total - 1 - i;
+    const idx = total - 1 - i;
     const threshold = (idx + 1) / total;
-    c.style.opacity    = p >= threshold ? '0' : '1';
-    c.style.transform  = 'none';
+    c.style.opacity = p >= threshold ? '0' : '1';
+    c.style.transform = 'none';
     c.style.transition = 'none';
   });
 }
@@ -127,7 +127,7 @@ function getWmEnd() {
 function updateWordmark() {
   if (window.innerWidth <= 700) return;
 
-  const sy    = window.scrollY;
+  const sy = window.scrollY;
   const wmEnd = getWmEnd();
 
   const progress = Math.max(0, Math.min(1,
@@ -151,11 +151,11 @@ function updateWordmark() {
   if (progress >= 1) {
     nav.classList.add('scrolled');
     nav.style.justifyContent = 'flex-start';
-    nav.style.paddingLeft    = '0px';
+    nav.style.paddingLeft = '0px';
   } else {
     nav.classList.remove('scrolled');
     nav.style.justifyContent = 'center';
-    nav.style.paddingLeft    = '';
+    nav.style.paddingLeft = '';
   }
 
   document.getElementById('wm-o').style.opacity = '1';
@@ -167,6 +167,12 @@ function updateWordmark() {
 const staggerDelay = [0, 0.1, 0.2];
 let clones = [];
 let aboutHeading;
+let flipRafId = null;
+
+const laggedP = [0, 0, 0];
+const laggedTilt = [0, 0, 0];
+const LAG = 0.03;
+const TILT_LAG = 0.5;
 
 function easeSpring(t) {
   if (t === 0) return 0;
@@ -197,27 +203,31 @@ function buildFlipClones() {
   });
 }
 
-function updateFlip() {
-  if (window.innerWidth <= 700 || !clones.length) return;
-
+function getRawProgress() {
   const aboutSection = document.getElementById('about');
   const aboutTop     = aboutSection.getBoundingClientRect().top + window.scrollY;
-  const aboutImg     = aboutSection.querySelector('.about-photo');
   const sy           = window.scrollY;
+  const flipStart    = aboutTop - window.innerHeight;
+  const flipEnd      = aboutTop - window.innerHeight * 0.1;
+  return Math.max(0, Math.min(1, (sy - flipStart) / (flipEnd - flipStart)));
+}
 
-  const flipStart   = aboutTop - window.innerHeight;
-  const flipEnd     = aboutTop - window.innerHeight * 0.1;
-  const rawProgress = Math.max(0, Math.min(1,
-    (sy - flipStart) / (flipEnd - flipStart)
-  ));
+function renderFlip() {
+  if (window.innerWidth <= 700 || !clones.length) return;
 
-  const isActive = rawProgress > 0 && rawProgress < 1;
-  const isDone   = rawProgress >= 1;
+  const rawProgress = getRawProgress();
+  const isActive    = rawProgress > 0 && rawProgress < 1;
+  const isDone      = rawProgress >= 1;
 
   aboutHeading.classList.toggle('flip-active', !isDone);
   aboutHeading.style.opacity = isDone ? '1' : '0';
 
   const wmEl = document.getElementById('wordmark');
+  const sy   = window.scrollY;
+  const aboutSection = document.getElementById('about');
+  const aboutTop = aboutSection.getBoundingClientRect().top + window.scrollY;
+  const flipStart = aboutTop - window.innerHeight;
+
   wmEl.style.opacity   = sy < flipStart ? '1' : '0';
   wmEl.style.transition = 'opacity 0.3s';
 
@@ -226,13 +236,29 @@ function updateFlip() {
     document.getElementById(id).style.opacity = isActive ? '0' : '1';
   });
 
-  clones.forEach((clone, i) => {
-    if (!isActive) { clone.style.opacity = '0'; return; }
+  let stillMoving = false;
 
-    const p      = Math.max(0, Math.min(1,
+  clones.forEach((clone, i) => {
+    const targetP = Math.max(0, Math.min(1,
       (rawProgress - staggerDelay[i]) / (1 - staggerDelay[i])
     ));
-    const easedP = easeSpring(p);
+
+    // Chase target with lag
+    const pDiff = targetP - laggedP[i];
+    laggedP[i] += pDiff * LAG;
+
+    // Tilt: positive while moving forward, zero at rest
+    const targetTilt = (1 - laggedP[i]) * (i % 2 === 0 ? -7 : 5);
+    laggedTilt[i] += (targetTilt - laggedTilt[i]) * TILT_LAG;
+
+    if (Math.abs(pDiff) > 0.0001) stillMoving = true;
+
+    if (!isActive && Math.abs(pDiff) < 0.0001) {
+      clone.style.opacity = '0';
+      return;
+    }
+
+    const easedP = easeSpring(laggedP[i]);
 
     const srcEl = document.getElementById(srcIds[i]);
     const tgtEl = document.getElementById(['ah-olle', 'ah-lomberg', 'ah-davegard'][i]);
@@ -243,79 +269,46 @@ function updateFlip() {
     const y        = lerp(srcR.top,  tgtR.top,  easedP);
     const fontSize = lerp(parseFloat(clone.dataset.wmSize), parseFloat(clone.dataset.ahSize), easedP);
 
-    clone.textContent    = p > 0.65 ? ['olle','lomberg','davegård'][i] : ['o','l','d'][i];
+    clone.textContent    = laggedP[i] > 0.65 ? ['olle','lomberg','davegård'][i] : ['o','l','d'][i];
     clone.style.left     = x + 'px';
     clone.style.top      = y + 'px';
     clone.style.fontSize = fontSize + 'px';
-    clone.style.opacity  = '1';
+    clone.style.opacity  = rawProgress > 0 ? '1' : '0';
+    clone.style.transform = `rotate(${laggedTilt[i]}deg)`;
   });
+
+  // Keep looping if letters are still coasting
+  if (stillMoving || isActive) {
+    flipRafId = requestAnimationFrame(renderFlip);
+  } else {
+    flipRafId = null;
+  }
 }
 
-// ── FOOTER WORDMARK ───
-function initFooterWm() {
-  const groups = [
-    { suffix: document.getElementById('fw-suf-olle'),     chars: document.querySelectorAll('#fw-suf-olle .fw-c') },
-    { suffix: document.getElementById('fw-suf-lomberg'),  chars: document.querySelectorAll('#fw-suf-lomberg .fw-c') },
-    { suffix: document.getElementById('fw-suf-davegard'), chars: document.querySelectorAll('#fw-suf-davegard .fw-c') },
-  ];
-  const spaces = document.querySelectorAll('.fw-sp');
-
-  const naturalWidths = groups.map(g => g.suffix.scrollWidth);
-  const naturalSpaceW = spaces[0] ? spaces[0].offsetWidth : 0;
-
-  groups.forEach((g, i) => g.suffix.style.width = naturalWidths[i] + 'px');
-  spaces.forEach(s => s.style.width = naturalSpaceW + 'px');
-
-  let timers = [];
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      timers.forEach(t => clearTimeout(t));
-      timers = [];
-
-      if (entry.isIntersecting) {
-        let globalIndex = 0;
-        groups.forEach((g, wi) => {
-          Array.from(g.chars).reverse().forEach(c => {
-            const t = setTimeout(() => { c.style.opacity = '0'; }, wi * 150 + globalIndex * 50);
-            timers.push(t);
-            globalIndex++;
-          });
-          const ts = setTimeout(() => { g.suffix.style.width = '0px'; }, wi * 150 + g.chars.length * 50);
-          timers.push(ts);
-        });
-        const t1 = setTimeout(() => spaces.forEach(s => s.style.width = '0px'), 150 + groups[0].chars.length * 50);
-        timers.push(t1);
-      } else {
-        groups.forEach((g, i) => {
-          g.chars.forEach(c => c.style.opacity = '1');
-          g.suffix.style.width = naturalWidths[i] + 'px';
-        });
-        spaces.forEach(s => s.style.width = naturalSpaceW + 'px');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  observer.observe(document.querySelector('footer'));
+function kickFlipRaf() {
+  if (!flipRafId) {
+    flipRafId = requestAnimationFrame(renderFlip);
+  }
 }
+
 
 // ── INIT ───
 document.fonts.ready.then(() => {
   cacheWidths();
   updateWordmark();
   buildFlipClones();
-  updateFlip();
+  kickFlipRaf(); // was updateFlip()
   initFooterWm();
 });
 
 window.addEventListener('scroll', () => {
   updateWordmark();
-  updateFlip();
+  kickFlipRaf();
 });
 
 window.addEventListener('resize', () => {
   cacheWidths();
   buildFlipClones();
   updateWordmark();
-  updateFlip();
+  kickFlipRaf();
 });
