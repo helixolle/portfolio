@@ -1,7 +1,55 @@
+@font-face {
+  font-family: 'RetorikaMono';
+  src: url('assets/fonts/RetorikaMono/RetorikaMono-Regular.otf') format('opentype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'RetorikaMono';
+  src: url('assets/fonts/RetorikaMono/RetorikaMono-Medium.otf') format('opentype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'RetorikaMono';
+  src: url('assets/fonts/RetorikaMono/RetorikaMono-Semibold.otf') format('opentype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'RetorikaMono';
+  src: url('assets/fonts/RetorikaMono/RetorikaMono-Bold.otf') format('opentype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Agave';
+  src: url('assets/fonts/Agave/Agave-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Agave';
+  src: url('assets/fonts/Agave/Agave-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'TRTTerminal';
+  src: url('assets/fonts/TRTTerminal/TRTTerminalMonoDemo-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'TRTTerminal';
+  src: url('assets/fonts/TRTTerminal/TRTTerminalMonoDemo-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+
+
 :root {
   --bg: #FFF;
   --text: #0F0F0E;
-  --muted: #888880;
+  --muted: #0F0F0E;
   --border: rgba(15, 15, 14, 0.1);
 }
 
@@ -59,6 +107,7 @@ header {
   align-items: flex-end;
 }
 
+/* ── CONTACT BLOCK ─── */
 .contact-block {
   position: relative;
   display: inline-flex;
@@ -111,7 +160,7 @@ header {
 
 @keyframes cText {
   0% {
-    color: var(--muted);
+    color: var(--text);
   }
 
   40% {
@@ -124,20 +173,31 @@ header {
 }
 
 .contact-block a {
-  font-size: 10px;
+  font-family: 'RetorikaMono', monospace;
+  font-size: 11px;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text);
   text-decoration: none;
   letter-spacing: 0.02em;
   line-height: 2.2;
   display: block;
   white-space: nowrap;
   text-align: right;
-  transition: color .2s;
+  position: relative;
+}
+
+.contact-block a::before {
+  content: attr(data-text);
+  display: block;
+  font-weight: 700;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .contact-block a:hover {
-  color: var(--text);
+  font-weight: 700;
 }
 
 /* ── WORDMARK ─── */
@@ -177,7 +237,7 @@ header {
   transition: none;
 }
 
-/* ── HEADER RIGHT ── */
+/* ── HEADER RIGHT ─── */
 .header-right {
   display: flex;
   justify-content: flex-end;
@@ -199,30 +259,37 @@ nav.scrolled {
 }
 
 .nav-link {
+  font-family: 'RetorikaMono', monospace;
   font-size: 10.5px;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--text);
   text-decoration: none;
-  transition: color .2s;
   position: relative;
-  padding-bottom: 7px;
+}
+
+.nav-link::before {
+  content: attr(data-text);
+  display: block;
+  font-weight: 700;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .nav-link::after {
   display: none;
 }
 
-.nav-link:hover {
-  color: var(--text);
-}
-
+.nav-link:hover,
 .nav-link.active {
-  color: var(--text);
-  font-weight: 800;
+  font-weight: 700;
+  font-size: 11px;
 }
 
+/* ── MAIN ─── */
 main {
   padding: 200px 44px 0;
 }
@@ -237,14 +304,16 @@ main {
 }
 
 .section-label {
+  font-family: 'RetorikaMono', monospace;
   font-size: 9px;
   font-weight: 500;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--text);
   margin-bottom: 28px;
 }
 
+/* ── PROJECT GRID ─── */
 .project-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -275,8 +344,6 @@ main {
 .project-card:hover .card-img-wrap img {
   transform: scale(1.04);
 }
-
-
 
 .img-ph {
   width: 100%;
@@ -343,9 +410,10 @@ main {
 }
 
 .card-sub {
+  font-family: 'RetorikaMono', monospace;
   font-size: 12px;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text);
 }
 
 .rule {
@@ -367,11 +435,12 @@ main {
 }
 
 .about-label {
+  font-family: 'RetorikaMono', monospace;
   font-size: 9px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--text);
   margin-bottom: 16px;
 }
 
@@ -410,12 +479,12 @@ main {
   object-fit: cover;
 }
 
-
 .about-text p {
-  font-size: 16px;
+  font-family: 'RetorikaMono', monospace;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.84;
-  color: #3a3a37;
+  color: var(--text);
   margin-bottom: 16px;
   letter-spacing: 0.04ch;
 }
@@ -424,16 +493,18 @@ main {
   margin-bottom: 0;
 }
 
+/* ── EXPERIENCE ─── */
 .exp-block {
   margin-top: 52px;
 }
 
 .exp-label {
+  font-family: 'RetorikaMono', monospace;
   font-size: 9px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--text);
   padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
 }
@@ -447,34 +518,39 @@ main {
 }
 
 .exp-years {
-  font-size: 10.5px;
+  font-family: 'RetorikaMono', monospace;
+  font-size: 10px;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text);
   padding-top: 1px;
 }
 
 .exp-org {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   margin-bottom: 2px;
 }
 
 .exp-role {
+  font-family: 'RetorikaMono', monospace;
   font-size: 12px;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text);
   margin-bottom: 4px;
 }
 
 .exp-detail {
+  font-family: 'RetorikaMono', monospace;
   font-size: 11px;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text);
   line-height: 1.7;
   letter-spacing: 0.02ch;
+  
 }
 
+/* ── FOOTER ─── */
 footer {
   border-top: 1px solid var(--border);
   padding: 24px 44px;
@@ -483,10 +559,11 @@ footer {
   align-items: center;
 }
 
-footer>span {
+footer > span {
+  font-family: 'Agave', monospace;
   font-size: 10px;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--text);
   letter-spacing: 0.05em;
 }
 
@@ -610,20 +687,20 @@ footer>span {
   opacity: 0.4;
 }
 
+/* ── MOBILE ─── */
 @media (max-width: 700px) {
   header {
-    padding: 20px 20px 0;
+    padding: 10px 20px;
     overflow: visible;
-  }
-
-  main {
-    padding: 100px 20px 0;
+    background: var(--bg);
+    height: 48px;
   }
 
   .header-top {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    height: 100%;
   }
 
   .header-left {
@@ -634,13 +711,14 @@ footer>span {
     display: none;
   }
 
-  #desktopNav {
+  .contact-block {
     display: none;
   }
 
   .wordmark {
-    font-size: clamp(48px, 16vw, 80px);
-    justify-content: center;
+    font-size: 28px;
+    justify-content: flex-start;
+    line-height: 1;
   }
 
   .wm-suffix,
@@ -648,12 +726,33 @@ footer>span {
     display: none;
   }
 
+  /* Pin nav to the right side of the header bar */
+  #desktopNav {
+    display: flex !important;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .nav-link {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+
   .hamburger {
-    display: flex;
+    display: none;
   }
 
   .mobile-nav {
-    display: flex;
+    display: none !important;
+  }
+
+  main {
+    padding: 68px 20px 0;
   }
 
   .project-grid {
@@ -678,11 +777,12 @@ footer>span {
   }
 
   .mobile-contact-label {
+    font-family: 'RetorikaMono', monospace;
     font-size: 9px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--text);
     margin-bottom: 20px;
   }
 
@@ -693,17 +793,17 @@ footer>span {
   }
 
   .mobile-contact-links a {
-    font-size: 13px;
+    font-family: 'RetorikaMono', monospace;
+    font-size: 12px;
     font-weight: 400;
     color: var(--text);
     text-decoration: none;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.02em;
     padding: 14px 0;
     border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: color .2s;
   }
 
   .mobile-contact-links a:first-child {
@@ -711,7 +811,7 @@ footer>span {
   }
 
   .mobile-contact-links a:hover {
-    color: var(--muted);
+    font-weight: 700;
   }
 
   .mobile-contact-links a span {
@@ -723,7 +823,7 @@ footer>span {
     padding: 20px;
   }
 
-  footer>span:last-child {
+  footer > span:last-child {
     display: none;
   }
 }
