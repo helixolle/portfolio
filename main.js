@@ -1,8 +1,36 @@
 // ── SCROLL PROGRESS ───
+let wmVelocity = 0;
+let wmLastY = window.scrollY;
+let wmRafId = null;
+
+let currentWmX = 0;
+let targetWmX = 0;
+
+function decayWmWeight() {
+  wmVelocity *= 0.88;
+  const weight = 700 + Math.min(wmVelocity * 6, 200);
+  const wm = document.getElementById('wordmark');
+  if (wm) wm.style.fontVariationSettings = `'wght' ${Math.round(weight)}`;
+  if (wmVelocity > 0.5) {
+    wmRafId = requestAnimationFrame(decayWmWeight);
+  } else {
+    if (wm) wm.style.fontVariationSettings = `'wght' 700`;
+    wmRafId = null;
+  }
+}
+
 window.addEventListener('scroll', () => {
   const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
   document.getElementById('prog').style.width = pct + '%';
+
+  if (window.innerWidth <= 700) {
+    wmVelocity = Math.abs(window.scrollY - wmLastY);
+    if (!wmRafId) wmRafId = requestAnimationFrame(decayWmWeight);
+  }
+
+  wmLastY = window.scrollY;
 });
+
 
 // ── SMOOTH SCROLL ───
 function scrollToSection(id) {
@@ -145,10 +173,11 @@ function updateWordmark() {
   spaces[0].style.width = widths.space * (1 - pL) + 'px';
   spaces[1].style.width = widths.space * (1 - pD) + 'px';
 
-  wordmark.style.transform = `translateX(-${progress * 43}vw)`;
+  targetWmX = progress * 43;
+
 
   const nav = document.querySelector('nav');
-  if (progress >= 1) {
+  if (currentWmX >= 42) {
     nav.classList.add('scrolled');
     nav.style.justifyContent = 'flex-start';
     nav.style.paddingLeft = '0px';
@@ -193,11 +222,11 @@ function buildFlipClones() {
 
   ;['o', 'l', 'd'].forEach((letter, i) => {
     const clone = document.createElement('div');
-    clone.className      = 'flip-clone';
-    clone.textContent    = letter;
+    clone.className = 'flip-clone';
+    clone.textContent = letter;
     clone.dataset.wmSize = wmFontSize;
     clone.dataset.ahSize = ahFontSize;
-    clone.style.opacity  = '0';
+    clone.style.opacity = '0';
     document.body.appendChild(clone);
     clones.push(clone);
   });
@@ -205,10 +234,10 @@ function buildFlipClones() {
 
 function getRawProgress() {
   const aboutSection = document.getElementById('about');
-  const aboutTop     = aboutSection.getBoundingClientRect().top + window.scrollY;
-  const sy           = window.scrollY;
-  const flipStart    = aboutTop - window.innerHeight;
-  const flipEnd      = aboutTop - window.innerHeight * 0.1;
+  const aboutTop = aboutSection.getBoundingClientRect().top + window.scrollY;
+  const sy = window.scrollY;
+  const flipStart = aboutTop - window.innerHeight;
+  const flipEnd = aboutTop - window.innerHeight * 0.1;
   return Math.max(0, Math.min(1, (sy - flipStart) / (flipEnd - flipStart)));
 }
 
@@ -216,19 +245,19 @@ function renderFlip() {
   if (window.innerWidth <= 700 || !clones.length) return;
 
   const rawProgress = getRawProgress();
-  const isActive    = rawProgress > 0 && rawProgress < 1;
-  const isDone      = rawProgress >= 1;
+  const isActive = rawProgress > 0 && rawProgress < 1;
+  const isDone = rawProgress >= 1;
 
   aboutHeading.classList.toggle('flip-active', !isDone);
   aboutHeading.style.opacity = isDone ? '1' : '0';
 
   const wmEl = document.getElementById('wordmark');
-  const sy   = window.scrollY;
+  const sy = window.scrollY;
   const aboutSection = document.getElementById('about');
   const aboutTop = aboutSection.getBoundingClientRect().top + window.scrollY;
   const flipStart = aboutTop - window.innerHeight;
 
-  wmEl.style.opacity   = sy < flipStart ? '1' : '0';
+  wmEl.style.opacity = sy < flipStart ? '1' : '0';
   wmEl.style.transition = 'opacity 0.3s';
 
   const srcIds = ['wm-o', 'wm-l', 'wm-d'];
@@ -262,18 +291,18 @@ function renderFlip() {
 
     const srcEl = document.getElementById(srcIds[i]);
     const tgtEl = document.getElementById(['ah-olle', 'ah-lomberg', 'ah-davegard'][i]);
-    const srcR  = srcEl.getBoundingClientRect();
-    const tgtR  = tgtEl.getBoundingClientRect();
+    const srcR = srcEl.getBoundingClientRect();
+    const tgtR = tgtEl.getBoundingClientRect();
 
-    const x        = lerp(srcR.left, tgtR.left, easedP);
-    const y        = lerp(srcR.top,  tgtR.top,  easedP);
+    const x = lerp(srcR.left, tgtR.left, easedP);
+    const y = lerp(srcR.top, tgtR.top, easedP);
     const fontSize = lerp(parseFloat(clone.dataset.wmSize), parseFloat(clone.dataset.ahSize), easedP);
 
-    clone.textContent    = laggedP[i] > 0.65 ? ['olle','lomberg','davegård'][i] : ['o','l','d'][i];
-    clone.style.left     = x + 'px';
-    clone.style.top      = y + 'px';
+    clone.textContent = laggedP[i] > 0.65 ? ['olle', 'lomberg', 'davegård'][i] : ['o', 'l', 'd'][i];
+    clone.style.left = x + 'px';
+    clone.style.top = y + 'px';
     clone.style.fontSize = fontSize + 'px';
-    clone.style.opacity  = rawProgress > 0 ? '1' : '0';
+    clone.style.opacity = rawProgress > 0 ? '1' : '0';
     clone.style.transform = `rotate(${laggedTilt[i]}deg)`;
   });
 
@@ -290,6 +319,35 @@ function kickFlipRaf() {
     flipRafId = requestAnimationFrame(renderFlip);
   }
 }
+
+
+
+const aboutLeft = document.querySelector('.about-left');
+let currentY = 0;
+let targetY = 0;
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+  const delta = window.scrollY - lastScrollY; // positive = down, negative = up
+  targetY += delta * 0.01; // 0.3 = drag amount, tweak this
+  lastScrollY = window.scrollY;
+});
+
+function animateLeft() {
+  currentY += (targetY - currentY) * 0.001; // lerp speed
+  aboutLeft.style.transform = `translateY(${currentY}px)`;
+  requestAnimationFrame(animateLeft);
+}
+
+animateLeft();
+
+function animateWordmark() {
+  currentWmX += (targetWmX - currentWmX) * 0.1;
+  wordmark.style.transform = `translateX(-${currentWmX}vw)`;
+  requestAnimationFrame(animateWordmark);
+}
+animateWordmark();
+
 
 
 // ── INIT ───

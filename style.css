@@ -44,7 +44,11 @@
   font-weight: 700;
 }
 
-
+@font-face {
+  font-family: 'Chillax';
+  src: url('assets/fonts/Chillax/Chillax-Variable.ttf') format('truetype');
+  font-weight: 200 700;
+}
 
 :root {
   --bg: #FFF;
@@ -461,6 +465,13 @@ main {
   display: block;
   transition: opacity 0.2s;
 }
+
+.about-left {
+  position: sticky;
+  top: 30px;
+  align-self: start;
+}
+
 
 .about-photo {
   width: 100%;
