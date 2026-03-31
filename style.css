@@ -158,6 +158,18 @@ nav {
   gap: 60px;
   padding: 14px 0 0;
   transition: gap 0.3s ease;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(.25, .46, .45, .94), opacity 0.3s;
+}
+
+.nav-link.flip-in {
+  animation: navFlip 0.5s cubic-bezier(.25, .46, .45, .94) forwards;
+}
+
+@keyframes navFlip {
+  0%   { transform: rotateX(-90deg); opacity: 0; }
+  60%  { transform: rotateX(10deg);  opacity: 1; }
+  100% { transform: rotateX(0deg);   opacity: 1; }
 }
 
 nav.scrolled {

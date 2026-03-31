@@ -150,7 +150,7 @@ function collapseLetters(suffix, chars, p) {
 }
 
 function getWmEnd() {
-  return document.getElementById('about').offsetTop * 0.3;
+  return document.getElementById('about').offsetTop * 0.1;
 }
 
 function updateWordmark() {
@@ -254,7 +254,7 @@ function kickFlipRaf() {
 
 // ── ABOUT LEFT PARALLAX ───
 function animateLeft() {
-  currentY += (targetY - currentY) * 0.001;
+  currentY += (targetY - currentY) * 0.006;
   aboutLeft.style.transform = `translateY(${currentY}px)`;
   requestAnimationFrame(animateLeft);
 }
@@ -263,7 +263,7 @@ animateLeft();
 
 // ── WORDMARK + NAV SLIDE ───
 function animateWordmark() {
-  currentWmX += (targetWmX - currentWmX) * 0.08;
+  currentWmX += (targetWmX - currentWmX) * 0.2;
   wordmark.style.transform = `translateX(-${currentWmX}vw)`;
 
   const solidEnd = 55 - currentWmX;
@@ -275,10 +275,26 @@ function animateWordmark() {
 
   const progress = Math.min(1, currentWmX / 43);
   if (currentWmX >= 42) {
-    nav.classList.add('scrolled');
-    nav.style.transform = '';
+    if (!nav.classList.contains('scrolled')) {
+      nav.classList.add('scrolled');
+      nav.style.transform = '';
+      // Stagger flip-in on each link
+      document.querySelectorAll('.nav-link').forEach((link, i) => {
+        link.style.opacity = '0';
+        link.classList.remove('flip-in');
+        setTimeout(() => {
+          link.classList.add('flip-in');
+          link.style.opacity = '';
+        }, i * 80); // 80ms stagger between each link
+      });
+    }
   } else {
-    nav.classList.remove('scrolled');
+    if (nav.classList.contains('scrolled')) {
+      nav.classList.remove('scrolled');
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('flip-in');
+      });
+    }
     nav.style.transform = currentWmX > 0.5
       ? `translateX(-${progress * navTravelPx}px)`
       : '';
