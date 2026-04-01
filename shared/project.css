@@ -97,7 +97,7 @@ header {
 .wordmark {
   font-family: 'Chillax', sans-serif;
   font-weight: 700;
-  font-size: clamp(56px, 9vw, 104px);
+  font-size: clamp(28px, 3vw, 48px);
   line-height: 0.86;
   letter-spacing: -0.04em;
   text-align: left;
@@ -443,15 +443,6 @@ main {
   padding-top: 16px;
 }
 
-.project-num {
-  font-family: 'Agave', monospace;
-  font-size: 9px;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  color: var(--text);
-  opacity: 0.4;
-  margin-bottom: 12px;
-}
 
 .project-title {
   font-family: 'Chillax', sans-serif;
@@ -556,6 +547,22 @@ main {
 
 
 
+.hero-video-wrap {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.hero-video-wrap video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+
 
 
 /* Requirements table */
@@ -571,9 +578,12 @@ main {
   border-bottom: 1px solid var(--color-border, #e0ddd8);
   gap: 24px;
   padding: 16px 0;
+  font-family: 'RetorikaMono', monospace;
+  font-size: 0.8rem;
 }
 
 .req-row--header .req-cell {
+  font-family: RetorikaMono;
   font-weight: 600;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -595,7 +605,8 @@ main {
 .insight-item {
   padding: 14px 0;
   border-bottom: 1px solid var(--color-border, #e0ddd8);
-  font-size: 0.95em;
+  font-family: 'RetorikaMono', monospace;
+  font-size: 0.8em;
   color: var(--color-text-muted, #555);
 }
 

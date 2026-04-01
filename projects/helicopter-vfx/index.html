@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Helicopter VFX — Olle Lomberg Davegård</title>
+    <link rel="stylesheet"
+        href="https://api.fontshare.com/v2/css?f[]=chillax@700,600&f[]=clash-display@400,500,600&display=swap" />
+    <link rel="stylesheet" href="../../shared/project.css" />
+</head>
+
+<body>
+
+    <div class="prog" id="prog"></div>
+
+    <header id="siteHeader">
+        <div class="header-top">
+            <div class="header-left-col">
+                <a href="../../index.html" class="wordmark">old</a>
+                <nav>
+                    <a href="../../index.html#projects" class="nav-link" data-text="Projects">Projects</a>
+                    <a href="../../index.html#about" class="nav-link" data-text="About">About</a>
+                    <a href="#" class="nav-link" data-text="Contact" id="contactLink">Contact</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <div class="contact-block" id="cBlock">
+                    <a href="mailto:olledavegardh@gmail.com"
+                        data-text="olledavegardh@gmail.com">olledavegardh@gmail.com</a>
+                    <a href="tel:+46707875208" data-text="+46707875208">+46707875208</a>
+                    <a href="https://linkedin.com/in/olleld" target="_blank"
+                        data-text="linkedin.com/in/olleld">linkedin.com/in/olleld</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-inner">
+            <div class="main-left"></div>
+            <div class="main-right">
+                <div class="project-title">Helicopter VFX</div>
+                <div class="project-tagline">Compositing a 3D animated helicopter into real drone footage.</div>
+            </div>
+
+            <div class="full-width">
+
+                <div class="info-bar">
+                    <div class="info-item">
+                        <div class="info-label">Role</div>
+                        <div class="info-value">3D Animation · Compositing</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Year</div>
+                        <div class="info-value">2020</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Built with</div>
+                        <div class="info-value">Blender · Nuke</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Type</div>
+                        <div class="info-value">Personal Project</div>
+                    </div>
+                </div>
+
+                <div class="hero-img hero-img--natural">
+                    <iframe
+                        src="https://player.vimeo.com/video/404583460?h=0b25425ba0?autoplay=0&title=0&byline=0&portrait=0"
+                        style="width:100%; aspect-ratio:16/9; border:none; display:block; border-radius:7px;"
+                        allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-label">Overview</div>
+                    <div class="section-body">
+                        <h3>A personal experiment in making something fake look like it belongs.</h3>
+                        <p>No brief, no client — just curiosity about whether I could place a 3D object convincingly
+                            into footage I found
+                            online. The drone footage was a free clip. The helicopter asset was sourced the same way.
+                        </p>
+                        <p>The asset was rigged and animated in Blender, rendered with Cycles, then tracked and
+                            composited in Nuke. I posted
+                            the result to r/Blender and r/vfx mostly to see what people would notice. The comments were
+                            more useful than I
+                            expected.</p>
+                        <div class="tag-row">
+                            <span class="tag">3D Animation</span>
+                            <span class="tag">VFX Compositing</span>
+                            <span class="tag">Blender</span>
+                            <span class="tag">Nuke</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-label">3D Animation</div>
+                    <div class="section-body">
+                        <h3>Getting the motion right before touching the composite</h3>
+                        <p>The helicopter was animated and rendered entirely in Blender using the Cycles render engine.
+                            Getting the
+                            movement to read as physically plausible — rotor blur, banking angle, the way weight shifts
+                            in a turn —
+                            required more iteration than the compositing work that followed. A static object dropped
+                            into footage
+                            reads as fake immediately. Motion sells it.</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-label">Compositing</div>
+                    <div class="section-body">
+                        <h3>Tracking the world before placing something in it</h3>
+                        <p>Nuke handled both the 3D camera track and the final composite. The track gave the render
+                            camera the same
+                            movement as the drone — without it, the helicopter would slide against the background
+                            regardless of how
+                            good the render looked. Matching light, grain, and colour grade came after that foundation
+                            was solid.</p>
+                        <p>The one thing that didn't fully land was the helicopter's shadow on the mountain surface.
+                            Getting an
+                            accurate point cloud of uneven terrain to catch a projected shadow convincingly was beyond
+                            what the
+                            footage and tools could reliably give me at the time.</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-label">Outcome</div>
+                    <div class="section-body">
+                        <h3>Community feedback as a design method</h3>
+                        <p>Posting to the Blender and VFX subreddits turned the project into something more useful than
+                            a finished
+                            piece — it became a conversation. Comments identified exactly the moments that broke the
+                            illusion.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <a href="../../index.html" class="next-project">
+            <div>
+                <div class="next-label">Back to</div>
+                <div class="next-title">All Projects</div>
+            </div>
+            <div class="next-arrow">→</div>
+        </a>
+
+    </main>
+
+    <section class="mobile-contact">
+        <div class="mobile-contact-label">Contact</div>
+        <div class="mobile-contact-links">
+            <a href="mailto:olledavegardh@gmail.com">olledavegardh@gmail.com <span>↗</span></a>
+            <a href="tel:+46707875208">+46707875208 <span>↗</span></a>
+            <a href="https://linkedin.com/in/olleld" target="_blank">linkedin.com/in/olleld <span>↗</span></a>
+        </div>
+    </section>
+
+    <footer>
+        <span>© 2026 Olle Lomberg Davegård</span>
+        <div class="footer-wm">old</div>
+        <span style="text-align:right;">Interaction Designer</span>
+    </footer>
+
+    <script src="../../shared/project.js"></script>
+</body>
+
+</html>
