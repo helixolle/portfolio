@@ -23,10 +23,49 @@ const laggedTilt   = [0, 0, 0];
 const LAG          = 0.03, TILT_LAG = 0.5;
 const staggerDelay = [0, 0.1, 0.2];
 
-const PHASE_START = 80;
+
+
+
+
+
+
+
+// ── CONTENT PIN ───
+// ── CONSTANTS ───
+const BLUR_END      = 200;
+const COLLAPSE_LEAD = 650; // how long wordmark collapses before content scrolls
+const PHASE_START   = BLUR_END;
+
 function PHASE_END() {
-  return document.getElementById('about').offsetTop * 0.18;
+  return document.getElementById('about').offsetTop * 0.18 + 200;
 }
+
+
+function updateContentPin() {
+  if (window.innerWidth <= 700) return;
+  const main = document.getElementById('colMain');
+  const pinReleaseStart = BLUR_END + COLLAPSE_LEAD;
+  const pinReleaseEnd   = pinReleaseStart + 150;
+
+  if (window.scrollY <= BLUR_END) {
+    // blur phase — counteract scroll fully
+    main.style.transform = `translateY(${window.scrollY}px)`;
+  } else if (window.scrollY <= pinReleaseStart) {
+    // collapse phase — hold at BLUR_END offset, wordmark collapses
+    main.style.transform = `translateY(${BLUR_END}px)`;
+  } else if (window.scrollY <= pinReleaseEnd) {
+    // ease release
+    const t = easeInOut((window.scrollY - pinReleaseStart) / 150);
+    main.style.transform = `translateY(${BLUR_END * (1 - t)}px)`;
+  } else {
+    main.style.transform = '';
+  }
+}
+
+
+
+
+
 
 
 // ── SCROLL LISTENER ───
@@ -43,6 +82,8 @@ window.addEventListener('scroll', () => {
   updateScrolledState();
   updateNav();
   kickFlipRaf();
+  updateBlurReveal();
+  updateContentPin()
 });
 
 
@@ -389,6 +430,48 @@ function kickFlipRaf() {
   if (!flipRafId) flipRafId = requestAnimationFrame(renderFlip);
 }
 
+function updateClock() {
+  const el = document.getElementById('footerClock');
+  if (!el) return;
+  const now = new Date();
+  const date = now.toLocaleDateString('sv-SE'); // 2026-04-17
+  const time = now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+  el.textContent = `${date} ${time}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+
+
+
+
+// ── BLUR CROSSFADE ───
+
+function updateBlurReveal() {
+  const psbBottom   = document.querySelector('.psb-bottom');
+  const projectGrid = document.querySelector('#projects .project-grid');
+  const blurEnd     = window.innerWidth <= 700 ? 30 : BLUR_END;
+  const p = Math.max(0, Math.min(1, window.scrollY / blurEnd));
+  const e = easeInOut(p);
+
+  if (psbBottom) {
+    psbBottom.style.filter  = `blur(${e * 10}px)`;
+    psbBottom.style.opacity = String(1 - e);
+  }
+
+  if (projectGrid) {
+    projectGrid.style.filter  = `blur(${(1 - e) * 10}px)`;
+    projectGrid.style.opacity = String(0.2 + 0.8 * e);
+  }
+}
+
+
+
+
+
+
+
+
 
 // ── ABOUT LEFT PARALLAX ───
 function animateLeft() {
@@ -408,6 +491,8 @@ animateLeft();
 document.fonts.ready.then(() => {
   cacheWidths();
   updateHeader();
+  updateContentPin()
+  updateBlurReveal();
   updateScrolledState();
   buildFlipClones();
   kickFlipRaf();
@@ -418,6 +503,8 @@ window.addEventListener('resize', () => {
   cacheWidths();
   buildFlipClones();
   updateHeader();
+  updateContentPin()
+  updateBlurReveal();
   updateScrolledState();
   kickFlipRaf();
 });

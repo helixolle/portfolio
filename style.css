@@ -117,7 +117,6 @@ body {
 
 .pre-scroll-bar::before {
   content: '';
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -535,6 +534,13 @@ nav {
   padding-bottom: 72px;
 }
 
+#projects .project-grid {
+  filter: blur(10px);
+  opacity: 0.2;
+  will-change: filter, opacity;
+  transition: none;
+}
+
 .section-label {
   font-family: 'RetorikaMono', monospace;
   font-size: 9px;
@@ -551,12 +557,65 @@ nav {
   margin: 0 0 64px;
 }
 
+/* ── HERO TAGLINE ─── */
+
+.pre-scroll-bar {
+  height: 100vh;
+}
+
+.psb-bottom {
+  position: fixed;
+  bottom: 44px;
+  left: 44px;
+  right: 44px;
+  pointer-events: none;
+  z-index: 90;
+}
+
+.psb-hero-heading {
+  font-family: 'Chillax', sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 3.2vw, 64px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.psb-hero-desc {
+  font-family: 'RetorikaMono', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.84;
+  letter-spacing: 0.01em;
+  max-width: 440px;
+  opacity: 0.6;
+}
+
+
+
 
 /* ── PROJECT GRID ─── */
 .project-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+
+.project-grid--small {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.project-grid--small .card-title {
+  font-size: 15px;
+}
+
+.project-grid--small .card-sub {
+  font-size: 11px;
+}
+
+.project-grid--small .card-info {
+  padding: 10px 2px 6px;
 }
 
 .project-card {
@@ -901,6 +960,12 @@ footer>span {
 @media (max-width: 700px) {
   .pre-scroll-bar {
     display: none;
+  }
+
+  .psb-bottom {
+    bottom: 80px;
+    left: 20px;
+    right: 20px;
   }
 
   .page-grid {

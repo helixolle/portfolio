@@ -18,6 +18,21 @@ document.getElementById('contactLink')?.addEventListener('click', e => {
   }
 });
 
+
+function updateClock() {
+  const el = document.getElementById('footerClock');
+  if (!el) return;
+  const now = new Date();
+  const date = now.toLocaleDateString('sv-SE'); // 2026-04-17
+  const time = now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+  el.textContent = `${date} ${time}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+
+
+
 // ── MOBILE NAV ───
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobileNav');
