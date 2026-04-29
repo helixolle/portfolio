@@ -32,7 +32,7 @@ const staggerDelay = [0, 0.1, 0.2];
 
 // ── CONTENT PIN ───
 // ── CONSTANTS ───
-const BLUR_END      = 200;
+const BLUR_END      = 150;
 const COLLAPSE_LEAD = 650; // how long wordmark collapses before content scrolls
 const PHASE_START   = BLUR_END;
 

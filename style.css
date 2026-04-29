@@ -591,6 +591,21 @@ nav {
   opacity: 0.6;
 }
 
+.psb-arrow {
+  font-family: 'RetorikaMono', monospace;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text);
+  opacity: 0.35;
+  margin-top: 20px;
+  display: block;
+  animation: arrowBob 1.8s ease-in-out infinite;
+}
+
+@keyframes arrowBob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(4px); }
+}
 
 
 
